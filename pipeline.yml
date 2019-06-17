@@ -28,10 +28,8 @@ pipelines:
           sourceLocation: <string>   
           outputLocation: <string>   
           outputFile: <string>       
-          repository: <string>       
-          goCommand: <string>       
-          noRegistry: <boolean>    
-          publishDeps: <boolean>    
+          repository: vijay-go-local       
+          goCommand: <string>         
 #          integrations:
 #            - art    
         execution:
