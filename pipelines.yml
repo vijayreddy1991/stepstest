@@ -6,6 +6,45 @@ resources:
       branches:
         include: GoBuild
       gitProvider: vijay_github
+      
+  - name: go_build_info_publish
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: varsha_artifactory
+      buildName: go_example_build_publish
+      buildNumber: 1
+      
+  - name: unsigned_release_bundle_go_publish
+    type: ReleaseBundle
+    configuration:
+      sourceArtifactory: varsha_artifactory
+      name: go_test_bundle
+      version: v1.6
+      
+  - name: signed_release_bundle_go_publish
+    type: ReleaseBundle
+    configuration:
+      sourceArtifactory: varsha_artifactory
+      name: go_test_bundle
+      version: v1.6
+      
+  - name: promoted_go_build_info_go_publish
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: varsha_artifactory
+      buildName: promote_go_build_publish
+      buildNumber: 1
+      
+  - name: distribution_rule_go_publish
+    type: DistributionRule
+    configuration:
+      sourceArtifactory: varsha_artifactory
+      cityName: "*"
+      serviceName: "*"
+      siteName: "*"
+      countryCodes:
+        - CN
+
 
 pipelines:
   - name: go_build
@@ -27,6 +66,57 @@ pipelines:
             - sudo tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
             - export PATH=$PATH:/usr/local/go/bin
             - go version
+            
+      - name: publish_build_info
+        type: PublishBuildInfo
+        configuration:
+          inputSteps:
+            - name: build_go
+          outputResources:
+            - name: go_build_info_publish
+
+      - name: promote_build_go
+        type: PromoteBuild
+        configuration:
+          targetRepository: promoted_go_test
+          integrations:
+            - name: varsha_artifactory
+          inputResources:
+            - name: go_build_info_publish
+          outputResources:
+            - name: promoted_go_build_info_go_publish
+            
+      - name: bundle_go_publish
+        type: CreateReleaseBundle
+        configuration:
+          dryRun: false
+          description: "This is to test GoPublishModule -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
+          releaseBundleName: go_publish_test_build
+          releaseBundleVersion: v1.6
+          sign: false
+          inputResources:
+            - name: promoted_go_build_info_go_publish
+          outputResources:
+            - name: unsigned_release_bundle_go_publish
+            
+      - name: sign_release_bundle_go_publish
+        type: SignReleaseBundle
+        configuration:
+          inputResources:
+            - name: unsigned_release_bundle_go_publish
+          outputResources:
+            - name: signed_release_bundle_go_publish
+            
+      - name: distribute_signed_release_bundle
+        type: DistributeReleaseBundle
+        configuration:
+          dryRun: false
+          inputResources:
+            - name: signed_release_bundle_go_publish
+            - name: distribution_rule_go_publish
+          integrations:              
+            - varsha_artifactory
+            
               
             
             
