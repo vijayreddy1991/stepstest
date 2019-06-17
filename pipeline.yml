@@ -1,43 +1,33 @@
 resources:
-  - name: vijayresource
+  - name: artifactory_go
     type: GitRepo
     configuration:
-      gitProvider: vijay_github
-      path: vijayreddy1991/stepstest
-#       files:
-#         include: jfrog.yml
-#         exclude:   
+      path: vijayreddy1991/artifactory-go-example
       branches:
-        only: master
-#       tags:
-#         only: 
-      buildOn:
-        commit: true
-#       shallowDepth: 2
-    version:
-      sha: master  
+        include: GoBuild
+      gitProvider: vijay_github
 
-pipelines: 
-  - name: GoBuild
+pipelines:
+  - name: go_build
     steps:
-      - name: Go
+      - name: build_go
         type: GoBuild
         configuration:
-          #inherits from bash
-          # for payloadType go:
-          sourceLocation: <string>   
-          outputLocation: <string>   
-          outputFile: <string>       
-          repository: vijay-go-local       
-          goCommand: <string>         
-#          integrations:
-#            - art    
+          sourceLocation: .
+          repository: vijay-go-local
+          outputLocation: /tmp/dist
+          outputFile: hello_gb
+          inputResources:
+            - name: artifactory_go
+          integrations:
+            - name: varsha_artifactory
         execution:
           onStart:
             - wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
             - sudo tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
             - export PATH=$PATH:/usr/local/go/bin
             - go version
-        requires:
-          inputResources:
-            - name: vijayresource    
+              
+            
+            
+            
