@@ -1,0 +1,38 @@
+resources:
+  - name: vijayresource
+    type: GitRepo
+    configuration:
+      gitProvider: vijay_github
+      path: vijayreddy1991/stepstest
+#       files:
+#         include: jfrog.yml
+#         exclude:   
+      branches:
+        only: master
+#       tags:
+#         only: 
+#       buildOn:
+#         commit: false
+#       shallowDepth: 2
+    version:
+      sha: master  
+
+pipeline: 
+  - name: GoBuild
+    steps:
+      - name: Go
+        type: GoBuild
+        configuration:
+          #inherits from bash
+          # for payloadType go:
+          sourceLocation: <string>   
+          outputLocation: <string>   
+          outputFile: <string>       
+          repository: <string>       
+          goCommand: <string>       
+          noRegistry: <boolean>    
+          publishDeps: <boolean>    
+#          integrations:
+#            - art                   
+          inputResources:
+            - name: vijayresource    
