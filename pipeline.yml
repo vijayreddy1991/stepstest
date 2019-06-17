@@ -11,8 +11,8 @@ resources:
         only: master
 #       tags:
 #         only: 
-#       buildOn:
-#         commit: false
+      buildOn:
+        commit: true
 #       shallowDepth: 2
     version:
       sha: master  
