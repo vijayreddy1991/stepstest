@@ -4,7 +4,7 @@ resources:
     configuration:
       path: vijayreddy1991/artifactory-go-example
       branches:
-        include: GoBuild
+        include: master
       gitProvider: vijay_github
       
   - name: go_build_info
