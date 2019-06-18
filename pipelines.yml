@@ -53,7 +53,7 @@ pipelines:
         type: GoPublishModule
         configuration:
           sourceLocation: .
-          version: v1.2.0          
+          version: v1.2.1         
           targetRepository: vijay-go-local
           deps: all
           inputResources:
