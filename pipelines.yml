@@ -78,7 +78,7 @@ pipelines:
       - name: promote_build_go
         type: PromoteBuild
         configuration:
-          targetRepository: promoted_go_test
+          targetRepository: vijay-go-local
           integrations:
             - name: varsha_artifactory
           inputResources:
