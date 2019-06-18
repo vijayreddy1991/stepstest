@@ -5,40 +5,40 @@ resources:
       path: vijayreddy1991/artifactory-go-example
       branches:
         include: GoBuild
-      gitProvider: vijay_github
+      gitProvider: varsha_github
       
   - name: go_build_info
     type: BuildInfo
     configuration:
-      sourceArtifactory: vijay_artifactory
+      sourceArtifactory: varsha_artifactory
       buildName: go_example_build
       buildNumber: 1
       
   - name: unsigned_release_bundle_go
     type: ReleaseBundle
     configuration:
-      sourceArtifactory: vijay_artifactory
+      sourceArtifactory: varsha_artifactory
       name: go_test_bundle
       version: v1.7
       
   - name: signed_release_bundle_go
     type: ReleaseBundle
     configuration:
-      sourceArtifactory: vijay_artifactory
+      sourceArtifactory: varsha_artifactory
       name: go_test_bundle
       version: v1.7
       
   - name: promoted_go_build_info_go
     type: BuildInfo
     configuration:
-      sourceArtifactory: vijay_artifactory
+      sourceArtifactory: varsha_artifactory
       buildName: promote_go_build
       buildNumber: 1
       
   - name: distribution_rule_go
     type: DistributionRule
     configuration:
-      sourceArtifactory: vijay_artifactory
+      sourceArtifactory: varsha_artifactory
       cityName: "*"
       serviceName: "*"
       siteName: "*"
@@ -59,7 +59,7 @@ pipelines:
           inputResources:
             - name: artifactory_go
           integrations:
-            - name: vijay_artifactory
+            - name: varsha_artifactory
         execution:
           onStart:
             - wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
@@ -80,7 +80,7 @@ pipelines:
         configuration:
           targetRepository: promoted_go_test
           integrations:
-            - name: vijay_artifactory
+            - name: varsha_artifactory
           inputResources:
             - name: go_build_info
           outputResources:
@@ -117,7 +117,7 @@ pipelines:
             - name: signed_release_bundle_go
             - name: distribution_rule_go
           integrations:              
-            - name: vijay_artifactory
+            - name: varsha_artifactory
                        
             
             
