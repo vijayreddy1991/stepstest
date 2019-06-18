@@ -106,8 +106,8 @@ pipelines:
         configuration:
           inputResources:
             - name: unsigned_release_bundle_go
-          outputResources:
-            - name: signed_release_bundle_go
+#           outputResources:
+#             - name: signed_release_bundle_go
             
 #       - name: distribute_signed_release
 #         type: DistributeReleaseBundle
