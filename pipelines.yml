@@ -117,7 +117,7 @@ pipelines:
             - name: signed_release_bundle_go
             - name: distribution_rule_go
           integrations:              
-            - varsha_artifactory
+            - name: varsha_artifactory
                        
             
             
