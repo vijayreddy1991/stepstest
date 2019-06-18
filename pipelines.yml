@@ -35,15 +35,15 @@ resources:
       buildName: promote_go_build
       buildNumber: 1
       
-  - name: distribution_rule_go
-    type: DistributionRule
-    configuration:
-      sourceArtifactory: varsha_artifactory
-      cityName: "*"
-      serviceName: "*"
-      siteName: "*"
-      countryCodes:
-        - CN
+#   - name: distribution_rule_go
+#     type: DistributionRule
+#     configuration:
+#       sourceArtifactory: varsha_artifactory
+#       cityName: "*"
+#       serviceName: "*"
+#       siteName: "*"
+#       countryCodes:
+#         - CN
 
 
 pipelines:
@@ -109,15 +109,15 @@ pipelines:
           outputResources:
             - name: signed_release_bundle_go
             
-      - name: distribute_signed_release
-        type: DistributeReleaseBundle
-        configuration:
-          dryRun: false
-          inputResources:
-            - name: signed_release_bundle_go
-            - name: distribution_rule_go
-          integrations:              
-            - name: varsha_artifactory
+#       - name: distribute_signed_release
+#         type: DistributeReleaseBundle
+#         configuration:
+#           dryRun: false
+#           inputResources:
+#             - name: signed_release_bundle_go
+#             - name: distribution_rule_go
+#           integrations:              
+#             - name: varsha_artifactory
                        
             
             
