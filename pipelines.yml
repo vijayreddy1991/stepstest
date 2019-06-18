@@ -50,12 +50,12 @@ pipelines:
   - name: go_build
     steps:
       - name: build_go
-        type: GoBuild
+        type: GoPublishModule
         configuration:
           sourceLocation: .
-          repository: vijay-go-local
-          outputLocation: /tmp/dist
-          outputFile: hello
+          version: v1.2.0          
+          targetRepository: vijay-go-local
+          deps: all
           inputResources:
             - name: artifactory_go
           integrations:
@@ -66,7 +66,7 @@ pipelines:
             - sudo tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
             - export PATH=$PATH:/usr/local/go/bin
             - go version
-            
+   
       - name: publish_build_info
         type: PublishBuildInfo
         configuration:
@@ -90,7 +90,9 @@ pipelines:
         type: CreateReleaseBundle
         configuration:
           dryRun: false
-          description: "This is to test GoPublishModule -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
+          description: >-
+        This is to test GoPublishModule -> PublishBuildInfo -> Promote ->
+        CreateRelease -> Sign -> Distribute pipeline chain
           releaseBundleName: go_publish_test_build
           releaseBundleVersion: v1.6
           sign: false
@@ -107,17 +109,16 @@ pipelines:
           outputResources:
             - name: signed_release_bundle_go
             
-#       - name: distribute_signed_release
-#         type: DistributeReleaseBundle
-#         configuration:
-#           dryRun: false
-#           inputResources:
-#             - name: signed_release_bundle_go
-#             - name: distribution_rule_go
-#           integrations:              
-#             - varsha_artifactory
-            
-              
+      - name: distribute_signed_release
+        type: DistributeReleaseBundle
+        configuration:
+          dryRun: false
+          inputResources:
+            - name: signed_release_bundle_go
+            - name: distribution_rule_go
+          integrations:              
+            - varsha_artifactory
+                       
             
             
             
