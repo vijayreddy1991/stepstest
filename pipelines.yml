@@ -19,14 +19,14 @@ resources:
     configuration:
       sourceArtifactory: varsha_artifactory
       name: go_test_bundle
-      version: v1.6
+      version: v1.7
       
   - name: signed_release_bundle_go
     type: ReleaseBundle
     configuration:
       sourceArtifactory: varsha_artifactory
       name: go_test_bundle
-      version: v1.6
+      version: v1.7
       
   - name: promoted_go_build_info_go
     type: BuildInfo
