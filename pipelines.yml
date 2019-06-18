@@ -14,26 +14,26 @@ resources:
       buildName: go_example_build
       buildNumber: 1
       
-#   - name: unsigned_release_bundle_go
-#     type: ReleaseBundle
-#     configuration:
-#       sourceArtifactory: varsha_artifactory
-#       name: go_test_bundle
-#       version: v1.7
+  - name: unsigned_release_bundle_go
+    type: ReleaseBundle
+    configuration:
+      sourceArtifactory: varsha_artifactory
+      name: go_test_bundle
+      version: v1.7
       
-#   - name: signed_release_bundle_go
-#     type: ReleaseBundle
-#     configuration:
-#       sourceArtifactory: varsha_artifactory
-#       name: go_test_bundle
-#       version: v1.7
+  - name: signed_release_bundle_go
+    type: ReleaseBundle
+    configuration:
+      sourceArtifactory: varsha_artifactory
+      name: go_test_bundle
+      version: v1.7
       
-#   - name: promoted_go_build_info_go
-#     type: BuildInfo
-#     configuration:
-#       sourceArtifactory: varsha_artifactory
-#       buildName: promote_go_build
-#       buildNumber: 1
+  - name: promoted_go_build_info_go
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: varsha_artifactory
+      buildName: promote_go_build
+      buildNumber: 1
       
 #   - name: distribution_rule_go
 #     type: DistributionRule
@@ -75,37 +75,37 @@ pipelines:
           outputResources:
             - name: go_build_info
 
-#       - name: promote_build_go
-#         type: PromoteBuild
-#         configuration:
-#           targetRepository: promoted_go_test
-#           integrations:
-#             - name: varsha_artifactory
-#           inputResources:
-#             - name: go_build_info
-#           outputResources:
-#             - name: promoted_go_build_info_go
+      - name: promote_build_go
+        type: PromoteBuild
+        configuration:
+          targetRepository: promoted_go_test
+          integrations:
+            - name: varsha_artifactory
+          inputResources:
+            - name: go_build_info
+          outputResources:
+            - name: promoted_go_build_info_go
             
-#       - name: bundle_go
-#         type: CreateReleaseBundle
-#         configuration:
-#           dryRun: false
-#           description: "This is to test GoPublishModule -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
-#           releaseBundleName: go_publish_test_build
-#           releaseBundleVersion: v1.6
-#           sign: false
-#           inputResources:
-#             - name: promoted_go_build_info_go
-#           outputResources:
-#             - name: unsigned_release_bundle_go
+      - name: bundle_go
+        type: CreateReleaseBundle
+        configuration:
+          dryRun: false
+          description: "This is to test GoPublishModule -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
+          releaseBundleName: go_publish_test_build
+          releaseBundleVersion: v1.6
+          sign: false
+          inputResources:
+            - name: promoted_go_build_info_go
+          outputResources:
+            - name: unsigned_release_bundle_go
             
-#       - name: sign_release_bundle_go
-#         type: SignReleaseBundle
-#         configuration:
-#           inputResources:
-#             - name: unsigned_release_bundle_go
-#           outputResources:
-#             - name: signed_release_bundle_go
+      - name: sign_release_bundle_go
+        type: SignReleaseBundle
+        configuration:
+          inputResources:
+            - name: unsigned_release_bundle_go
+          outputResources:
+            - name: signed_release_bundle_go
             
 #       - name: distribute_signed_release
 #         type: DistributeReleaseBundle
