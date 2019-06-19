@@ -19,14 +19,14 @@ resources:
     configuration:
       sourceArtifactory: varsha_artifactory
       name: go_test_bundle
-      version: v1.8
+      version: v1.7
       
   - name: signed_release_bundle_go
     type: ReleaseBundle
     configuration:
       sourceArtifactory: varsha_artifactory
       name: go_test_bundle
-      version: v1.8
+      version: v1.7
       
   - name: promoted_go_build_info_go
     type: BuildInfo
@@ -94,7 +94,7 @@ pipelines:
 #             This is to test GoPublishModule -> PublishBuildInfo -> Promote ->
 #             CreateRelease -> Sign -> Distribute pipeline chain
           releaseBundleName: go_publish_test_build
-          releaseBundleVersion: v5.0
+          releaseBundleVersion: v5.1
           sign: false
           inputResources:
             - name: promoted_go_build_info_go
