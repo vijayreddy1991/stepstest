@@ -98,7 +98,7 @@ pipelines:
 #             This is to test GoPublishModule -> PublishBuildInfo -> Promote ->
 #             CreateRelease -> Sign -> Distribute pipeline chain
           releaseBundleName: go_publish_test_build
-          releaseBundleVersion: v5.1
+          releaseBundleVersion: v5.5
           sign: false
           inputResources:
             - name: promoted_go_build_info_go
