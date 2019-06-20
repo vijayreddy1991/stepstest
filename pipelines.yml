@@ -52,7 +52,7 @@ pipelines:
       - name: build_go
         type: GoPublishModule
         configuration:
-          nodePool: u16_node
+          nodePool: ubuntu16
           sourceLocation: .
           version: v1.2.1         
           targetRepository: vijay-go-local
@@ -71,7 +71,7 @@ pipelines:
       - name: publish_build_info
         type: PublishBuildInfo
         configuration:
-          nodePool: u16_node
+          nodePool: ubuntu16
           inputSteps:
             - name: build_go
           outputResources:
@@ -80,7 +80,7 @@ pipelines:
       - name: promote_build_go
         type: PromoteBuild
         configuration:
-          nodePool: u16_node
+          nodePool: ubuntu16
           targetRepository: vijay-go-local
           integrations:
             - name: varsha_artifactory
@@ -92,7 +92,7 @@ pipelines:
       - name: bundle_go
         type: CreateReleaseBundle
         configuration:
-          nodePool: u16_node
+          nodePool: ubuntu16
           dryRun: false
 #           description: >-
 #             This is to test GoPublishModule -> PublishBuildInfo -> Promote ->
@@ -108,7 +108,7 @@ pipelines:
       - name: sign_release_bundle_go
         type: SignReleaseBundle
         configuration:
-          nodePool: u16_node
+          nodePool: ubuntu16
           inputResources:
             - name: unsigned_release_bundle_go
           outputResources:
@@ -117,7 +117,7 @@ pipelines:
       - name: distribute_signed_release
         type: DistributeReleaseBundle
         configuration:
-          nodePool: u16_node
+          nodePool: ubuntu16
           dryRun: false
           inputResources:
             - name: signed_release_bundle_go
