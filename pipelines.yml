@@ -55,7 +55,7 @@ pipelines:
           nodePool: ubuntu16
           sourceLocation: .
           version: v1.2.1         
-          targetRepository: vijay-go-local
+          targetRepository: promoted_go_test
           deps: all
           inputResources:
             - name: artifactory_go
@@ -81,7 +81,7 @@ pipelines:
         type: PromoteBuild
         configuration:
           nodePool: ubuntu16
-          targetRepository: vijay-go-local
+          targetRepository: promoted_go_test
           integrations:
             - name: varsha_artifactory
           inputResources:
@@ -98,7 +98,7 @@ pipelines:
 #             This is to test GoPublishModule -> PublishBuildInfo -> Promote ->
 #             CreateRelease -> Sign -> Distribute pipeline chain
           releaseBundleName: go_publish_test_build
-          releaseBundleVersion: v5.5
+          releaseBundleVersion: v5.9
           sign: false
           inputResources:
             - name: promoted_go_build_info_go
