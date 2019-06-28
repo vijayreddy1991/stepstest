@@ -52,6 +52,7 @@ pipelines:
       - name: build_go
         type: GoBuild
         configuration:
+          nodePool: ubuntu16
           sourceLocation: .
           repository: test-go-local
           outputLocation: /tmp/dist
@@ -59,7 +60,7 @@ pipelines:
           inputResources:
             - name: artifactory_go
           integrations:
-            - name: art
+            - name: vijay_artifactory
         execution:
           onStart:
             - wget https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz
