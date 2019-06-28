@@ -50,32 +50,50 @@ pipelines:
   - name: go_build
     steps:
       - name: build_go
-        type: GoPublishModule
+        type: GoBuild
         configuration:
-          nodePool: ubuntu16
           sourceLocation: .
-          version: v1.2.1         
-          targetRepository: test-go-local
-          deps: all
+          repository: test-go-local
+          outputLocation: /tmp/dist
+          outputFile: hello
           inputResources:
             - name: artifactory_go
           integrations:
-            - name: vijay_artifactory
+            - name: art
         execution:
           onStart:
             - wget https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz
             - sudo tar -C /usr/local -xzf go1.12.6.linux-amd64.tar.gz
             - export PATH=$PATH:/usr/local/go/bin
-            - go version
+            - go version  
+#     steps:
+#       - name: build_go
+#         type: GoPublishModule
+#         configuration:
+#           nodePool: ubuntu16
+#           sourceLocation: .
+#           version: v1.2.1         
+#           targetRepository: test-go-local
+#           deps: all
+#           inputResources:
+#             - name: artifactory_go
+#           integrations:
+#             - name: vijay_artifactory
+#         execution:
+#           onStart:
+#             - wget https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz
+#             - sudo tar -C /usr/local -xzf go1.12.6.linux-amd64.tar.gz
+#             - export PATH=$PATH:/usr/local/go/bin
+#             - go version
    
-      - name: publish_build_info
-        type: PublishBuildInfo
-        configuration:
-          nodePool: ubuntu16
-          inputSteps:
-            - name: build_go
-          outputResources:
-            - name: go_build_info
+#       - name: publish_build_info
+#         type: PublishBuildInfo
+#         configuration:
+#           nodePool: ubuntu16
+#           inputSteps:
+#             - name: build_go
+#           outputResources:
+#             - name: go_build_info
 
 #       - name: promote_build_go
 #         type: PromoteBuild
