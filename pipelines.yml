@@ -14,43 +14,43 @@ resources:
       buildName: go_example_build
       buildNumber: 1
       
-  - name: unsigned_release_bundle_go
-    type: ReleaseBundle
-    configuration:
-      sourceArtifactory: vijay_artifactory
-      name: go_test_bundle
-      version: v1.7
+#   - name: unsigned_release_bundle_go
+#     type: ReleaseBundle
+#     configuration:
+#       sourceArtifactory: vijay_artifactory
+#       name: go_test_bundle
+#       version: v1.7
       
-  - name: signed_release_bundle_go
-    type: ReleaseBundle
-    configuration:
-      sourceArtifactory: vijay_artifactory
-      name: go_test_bundle
-      version: v1.7
+#   - name: signed_release_bundle_go
+#     type: ReleaseBundle
+#     configuration:
+#       sourceArtifactory: vijay_artifactory
+#       name: go_test_bundle
+#       version: v1.7
       
-  - name: promoted_go_build_info_go
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: vijay_artifactory
-      buildName: promote_go_build
-      buildNumber: 1
+#   - name: promoted_go_build_info_go
+#     type: BuildInfo
+#     configuration:
+#       sourceArtifactory: vijay_artifactory
+#       buildName: promote_go_build
+#       buildNumber: 1
       
-  - name: distribution_rule_go
-    type: DistributionRule
-    configuration:
-      sourceArtifactory: vijay_artifactory
-      cityName: "*"
-      serviceName: "*"
-      siteName: "*"
-      countryCodes:
-        - CN
+#   - name: distribution_rule_go
+#     type: DistributionRule
+#     configuration:
+#       sourceArtifactory: vijay_artifactory
+#       cityName: "*"
+#       serviceName: "*"
+#       siteName: "*"
+#       countryCodes:
+#         - CN
 
 
 pipelines:
   - name: go_build
     steps:
       - name: build_go
-        type: GoPublishModule
+e        type: GoPublishModule
         configuration:
           nodePool: ubuntu16
           sourceLocation: .
@@ -77,17 +77,17 @@ pipelines:
           outputResources:
             - name: go_build_info
 
-      - name: promote_build_go
-        type: PromoteBuild
-        configuration:
-          nodePool: ubuntu16
-          targetRepository: test-go-local
-          integrations:
-            - name: vijay_artifactory
-          inputResources:
-            - name: go_build_info
-          outputResources:
-            - name: promoted_go_build_info_go
+#       - name: promote_build_go
+#         type: PromoteBuild
+#         configuration:
+#           nodePool: ubuntu16
+#           targetRepository: test-go-local
+#           integrations:
+#             - name: vijay_artifactory
+#           inputResources:
+#             - name: go_build_info
+#           outputResources:
+#             - name: promoted_go_build_info_go
             
 #       - name: bundle_go
 #         type: CreateReleaseBundle
