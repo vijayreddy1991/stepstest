@@ -20,8 +20,8 @@ resources:
 pipelines:
   - name: go_build
     steps:
-      - name: build_go#@$
-        type: GoBuild123
+      - name: build_go
+        type: GoBuild
         configuration:
           nodePool: ubuntu16
           sourceLocation: .
