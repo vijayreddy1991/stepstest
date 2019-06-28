@@ -44,7 +44,7 @@ pipelines:
         configuration:
           inputSteps:
             - name: build_go
-          targetRepository: vijay-go
+#           targetRepository: vijay-go
           integrations:
             - name: vijay_artifactory          
             
