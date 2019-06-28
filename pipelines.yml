@@ -24,7 +24,7 @@ pipelines:
         type: GoBuild
         configuration:
           nodePool: ubuntu16
-          sourceLocation: .
+          sourceLocation: 
           repository: test-go-local
           outputLocation: /tmp/dist
           outputFile: hello
