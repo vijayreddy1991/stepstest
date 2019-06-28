@@ -50,7 +50,7 @@ pipelines:
   - name: go_build
     steps:
       - name: build_go
-e        type: GoPublishModule
+        type: GoPublishModule
         configuration:
           nodePool: ubuntu16
           sourceLocation: .
