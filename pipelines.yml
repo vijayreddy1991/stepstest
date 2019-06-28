@@ -28,8 +28,8 @@ pipelines:
           repository: test-go-local
           outputLocation: tmp
           outputFile: hello
-          inputResources:
-            - name: artifactory
+#           inputResources:
+#             - name: artifactory
           integrations:
             - name: vijay_artifactory
         execution:
