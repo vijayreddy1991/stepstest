@@ -14,36 +14,7 @@ resources:
       buildName: go_example_build
       buildNumber: 1
       
-#   - name: unsigned_release_bundle_go
-#     type: ReleaseBundle
-#     configuration:
-#       sourceArtifactory: vijay_artifactory
-#       name: go_test_bundle
-#       version: v1.7
-      
-#   - name: signed_release_bundle_go
-#     type: ReleaseBundle
-#     configuration:
-#       sourceArtifactory: vijay_artifactory
-#       name: go_test_bundle
-#       version: v1.7
-      
-#   - name: promoted_go_build_info_go
-#     type: BuildInfo
-#     configuration:
-#       sourceArtifactory: vijay_artifactory
-#       buildName: promote_go_build
-#       buildNumber: 1
-      
-#   - name: distribution_rule_go
-#     type: DistributionRule
-#     configuration:
-#       sourceArtifactory: vijay_artifactory
-#       cityName: "*"
-#       serviceName: "*"
-#       siteName: "*"
-#       countryCodes:
-#         - CN
+
 
 
 pipelines:
@@ -67,83 +38,7 @@ pipelines:
             - sudo tar -C /usr/local -xzf go1.12.6.linux-amd64.tar.gz
             - export PATH=$PATH:/usr/local/go/bin
             - go version  
-#     steps:
-#       - name: build_go
-#         type: GoPublishModule
-#         configuration:
-#           nodePool: ubuntu16
-#           sourceLocation: .
-#           version: v1.2.1         
-#           targetRepository: test-go-local
-#           deps: all
-#           inputResources:
-#             - name: artifactory_go
-#           integrations:
-#             - name: vijay_artifactory
-#         execution:
-#           onStart:
-#             - wget https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz
-#             - sudo tar -C /usr/local -xzf go1.12.6.linux-amd64.tar.gz
-#             - export PATH=$PATH:/usr/local/go/bin
-#             - go version
-   
-#       - name: publish_build_info
-#         type: PublishBuildInfo
-#         configuration:
-#           nodePool: ubuntu16
-#           inputSteps:
-#             - name: build_go
-#           outputResources:
-#             - name: go_build_info
 
-#       - name: promote_build_go
-#         type: PromoteBuild
-#         configuration:
-#           nodePool: ubuntu16
-#           targetRepository: test-go-local
-#           integrations:
-#             - name: vijay_artifactory
-#           inputResources:
-#             - name: go_build_info
-#           outputResources:
-#             - name: promoted_go_build_info_go
-            
-#       - name: bundle_go
-#         type: CreateReleaseBundle
-#         configuration:
-#           nodePool: ubuntu16
-#           dryRun: false
-# #           description: >-
-# #             This is to test GoPublishModule -> PublishBuildInfo -> Promote ->
-# #             CreateRelease -> Sign -> Distribute pipeline chain
-#           releaseBundleName: go_publish_test_build
-#           releaseBundleVersion: v6.0
-#           sign: false
-#           inputResources:
-#             - name: promoted_go_build_info_go
-#           outputResources:
-#             - name: unsigned_release_bundle_go
-            
-#       - name: sign_release_bundle_go
-#         type: SignReleaseBundle
-#         configuration:
-#           nodePool: ubuntu16
-#           inputResources:
-#             - name: unsigned_release_bundle_go
-#           outputResources:
-#             - name: signed_release_bundle_go
-            
-#       - name: distribute_signed_release
-#         type: DistributeReleaseBundle
-#         configuration:
-#           nodePool: ubuntu16
-#           dryRun: false
-#           inputResources:
-#             - name: signed_release_bundle_go
-#             - name: distribution_rule_go
-#           integrations:              
-#             - name: vijay_artifactory
-                       
             
             
             
