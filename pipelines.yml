@@ -25,8 +25,8 @@ pipelines:
         configuration:
           nodePool: ubuntu16
           sourceLocation: .
-          repository: 
-          outputLocation: /tmp/dist
+          repository: test-go-local
+          outputLocation: 
           outputFile: hello
           inputResources:
             - name: artifactory_go
