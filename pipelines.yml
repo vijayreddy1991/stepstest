@@ -86,13 +86,13 @@ pipelines:
           integrations:
             - name: art    
 
-      - name: publish_build_info_gb
+      - name: publish_build
         type: PublishBuildInfo
         configuration:
           inputSteps:
             - name: publish_go_binary
           outputResources:
-            - name: go_build_info_publish
+            - name: go_build_info
             
       - name: promote_build_go
         type: PromoteBuild
@@ -101,11 +101,11 @@ pipelines:
           integrations:
             - name: art
           inputResources:
-            - name: go_build_info_publish
+            - name: go_build_info
           outputResources:
-            - name: promoted_go_build_info_go
+            - name: promoted_go_build
             
-      - name: bundle_go_publish_gb
+      - name: bundle_go_publish
         type: CreateReleaseBundle
         configuration:
           dryRun: false
