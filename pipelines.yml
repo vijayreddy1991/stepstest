@@ -115,7 +115,7 @@ pipelines:
           dryRun: false
           description: "This is to test GoBuild -> PushArtifactoryPackage -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
           releaseBundleName: go_service
-          releaseBundleVersion: v1.18
+          releaseBundleVersion: v2.0
           sign: false
           inputResources:
             - name: promoted_go_build
