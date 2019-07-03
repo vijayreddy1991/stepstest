@@ -14,11 +14,49 @@ resources:
       buildName: go_example_build
       buildNumber: 1
       
+  - name: unsigned_release_bundle_go
+    type: ReleaseBundle
+    configuration:
+      sourceArtifactory: vijay_artifactory 
+      name: go_test_bundle
+      version: v1.15
+      
+  - name: signed_release_bundle_go
+    type: ReleaseBundle
+    configuration:
+      sourceArtifactory: vijay_artifactory 
+      name: go_test_bundle
+      version: v1.15
+      
+  - name: promoted_go_build
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: vijay_artifactory 
+      buildName: promote_go_build_publish
+      buildNumber: 1
+      
+  - name: distribution_rule_go
+    type: DistributionRule
+    configuration:
+      sourceArtifactory: art
+      cityName: "*"
+      serviceName: "*"
+      siteName: "*"
+      countryCodes:
+        - CN      
 
 
 
 pipelines:
   - name: go_build
+    configuration:   
+      runtime:       
+        type: image
+        image:
+          custom:
+            name: vijaydocker1991/u18node
+            tag: gotesting
+            options: " "   
     steps:
       - name: build_go
         type: GoBuild
@@ -44,8 +82,58 @@ pipelines:
         configuration:
           inputSteps:
             - name: build_go
-#           targetRepository: vijay-go
+          targetRepository: test-go-local
           integrations:
-            - name: vijay_artifactory          
+            - name: vijay_artifactory    
+
+      - name: publish_build_info_gb
+        type: PublishBuildInfo
+        configuration:
+          inputSteps:
+            - name: publish_go_binary
+          outputResources:
+            - name: go_build_info_publish
+            
+      - name: promote_build_go
+        type: PromoteBuild
+        configuration:
+          targetRepository: test-go-local
+          integrations:
+            - name: vijay_artifactory 
+          inputResources:
+            - name: go_build_info_publish
+          outputResources:
+            - name: promoted_go_build_info_go
+            
+      - name: bundle_go_publish_gb
+        type: CreateReleaseBundle
+        configuration:
+          dryRun: false
+          description: "This is to test GoBuild -> PushArtifactoryPackage -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
+          releaseBundleName: go_publish_test_build
+          releaseBundleVersion: v1.15
+          sign: false
+          inputResources:
+            - name: promoted_go_build
+          outputResources:
+            - name: unsigned_release_bundle_go
+            
+      - name: sign_release_bundle_go
+        type: SignReleaseBundle
+        configuration:
+          inputResources:
+            - name: unsigned_release_bundle_go
+          outputResources:
+            - name: signed_release_bundle_go
+            
+      - name: distribute_signed_release_bundle
+        type: DistributeReleaseBundle
+        configuration:
+          dryRun: false
+          inputResources:
+            - name: signed_release_bundle_go
+            - name: distribution_rule_go
+          integrations: 
+            - name: art          
             
             
