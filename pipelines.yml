@@ -10,35 +10,35 @@ resources:
   - name: go_build_info
     type: BuildInfo
     configuration:
-      sourceArtifactory: vijay_artifactory
+      sourceArtifactory: art
       buildName: go_example_build
       buildNumber: 1
       
   - name: unsigned_release_bundle_go
     type: ReleaseBundle
     configuration:
-      sourceArtifactory: vijay_artifactory 
+      sourceDistribution: dist 
       name: go_test_bundle
       version: v1.15
       
   - name: signed_release_bundle_go
     type: ReleaseBundle
     configuration:
-      sourceArtifactory: vijay_artifactory 
+      sourceDistribution: dist 
       name: go_test_bundle
       version: v1.15
       
   - name: promoted_go_build
     type: BuildInfo
     configuration:
-      sourceArtifactory: vijay_artifactory 
+      sourceArtifactory: art 
       buildName: promote_go_build_publish
       buildNumber: 1
       
   - name: distribution_rule_go
     type: DistributionRule
     configuration:
-      sourceArtifactory: art
+      sourceDistribution: dist
       cityName: "*"
       serviceName: "*"
       siteName: "*"
@@ -69,7 +69,7 @@ pipelines:
           inputResources:
             - name: artifactory_go
           integrations:
-            - name: vijay_artifactory
+            - name: art
         execution:
           onStart:
             - wget https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz
@@ -84,7 +84,7 @@ pipelines:
             - name: build_go
           targetRepository: test-go-local
           integrations:
-            - name: vijay_artifactory    
+            - name: art    
 
       - name: publish_build_info_gb
         type: PublishBuildInfo
@@ -99,7 +99,7 @@ pipelines:
         configuration:
           targetRepository: test-go-local
           integrations:
-            - name: vijay_artifactory 
+            - name: art
           inputResources:
             - name: go_build_info_publish
           outputResources:
@@ -134,6 +134,6 @@ pipelines:
             - name: signed_release_bundle_go
             - name: distribution_rule_go
           integrations: 
-            - name: art          
+            - name: dist          
             
             
