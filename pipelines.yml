@@ -19,14 +19,14 @@ resources:
     configuration:
       sourceDistribution: dist 
       name: go_test_bundle
-      version: v1.15
+      version: v1.16
       
   - name: signed_release_bundle_go
     type: ReleaseBundle
     configuration:
       sourceDistribution: dist 
       name: go_test_bundle
-      version: v1.15
+      version: v1.16
       
   - name: promoted_go_build
     type: BuildInfo
@@ -115,7 +115,7 @@ pipelines:
           dryRun: false
           description: "This is to test GoBuild -> PushArtifactoryPackage -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
           releaseBundleName: go_publish_test_build
-          releaseBundleVersion: v1.15
+          releaseBundleVersion: v1.16
           sign: false
           inputResources:
             - name: promoted_go_build
