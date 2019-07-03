@@ -72,14 +72,15 @@ pipelines:
             - name: art
         execution:
           onStart:
-            - wget https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz
-            - sudo tar -C /usr/local -xzf go1.12.6.linux-amd64.tar.gz
+            - wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
+            - sudo tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
             - export PATH=$PATH:/usr/local/go/bin
             - go version  
             
       - name: publish_go_binary
         type: GoPublishBinary
         configuration:
+          nodePool: ubuntu16        
           inputSteps:
             - name: build_go
           targetRepository: test-go-local
@@ -89,6 +90,7 @@ pipelines:
       - name: publish_build
         type: PublishBuildInfo
         configuration:
+          nodePool: ubuntu16        
           inputSteps:
             - name: publish_go_binary
           outputResources:
@@ -97,6 +99,7 @@ pipelines:
       - name: promote_build_go
         type: PromoteBuild
         configuration:
+          nodePool: ubuntu16        
           targetRepository: test-go-local
           integrations:
             - name: art
@@ -108,6 +111,7 @@ pipelines:
       - name: bundle_go_publish
         type: CreateReleaseBundle
         configuration:
+          nodePool: ubuntu16        
           dryRun: false
           description: "This is to test GoBuild -> PushArtifactoryPackage -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
           releaseBundleName: go_publish_test_build
