@@ -43,7 +43,7 @@ resources:
       serviceName: "*"
       siteName: "*"
       countryCodes:
-        - CN      
+        - IN     
 
 
 
