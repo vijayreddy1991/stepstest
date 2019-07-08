@@ -18,14 +18,14 @@ resources:
     type: ReleaseBundle
     configuration:
       sourceDistribution: dist 
-      name: go_service
+      name: test-go-local
       version: v1.16
       
   - name: signed_release_bundle_go
     type: ReleaseBundle
     configuration:
       sourceDistribution: dist 
-      name: go_service
+      name: test-go-local
       version: v1.16
       
   - name: promoted_go_build
@@ -116,7 +116,7 @@ pipelines:
           nodePool: ubuntu16        
           dryRun: false
           description: "This is to test GoBuild -> PushArtifactoryPackage -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
-          releaseBundleName: go_service
+          releaseBundleName: test-go-local
           releaseBundleVersion: v2.1.$run_number
           sign: false
           inputResources:
