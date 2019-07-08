@@ -102,7 +102,7 @@ pipelines:
         type: PromoteBuild
         configuration:
           nodePool: ubuntu16        
-          targetRepository: promote-test
+          targetRepository: test-go-local
           integrations:
             - name: art
           inputResources:
