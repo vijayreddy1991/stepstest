@@ -3,6 +3,14 @@ pipelines:
     steps:
       - name: BashVijay
         type: Bash
+        configuration:   
+          runtime:       
+            type: image
+            image:
+              custom:
+                name: vijaydocker1991/u18node
+                tag: gotesting
+                options: " "          
         execution:
           onExecute:
             - printenv
