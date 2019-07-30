@@ -1,13 +1,14 @@
+
+  
 resources:
-  - name: artifactory_govijay
+  - name: gogit
     type: GitRepo
     configuration:
       path: vijayreddy1991/artifactory-go-example
       branches:
         include: master
       gitProvider: my_integration #github
-  
-
+      
 pipelines:
   - name: localpipeline
     steps:
@@ -22,7 +23,7 @@ pipelines:
                 tag: gotesting
                 options: " "   
           inputResources:
-            - name: artifactory_govijay
+            - name: gogit
         execution:
           onExecute:
             - printenv
