@@ -1,5 +1,5 @@
 resources:
-  - name: gogit
+  - name: gotest
     type: GitRepo
     configuration:
       path: vijayreddy1991/artifactory-go-example
@@ -21,7 +21,7 @@ pipelines:
                 tag: gotesting
                 options: " "   
           inputResources:
-            - name: gogit
+            - name: gotest
         execution:
           onExecute:
             - printenv
