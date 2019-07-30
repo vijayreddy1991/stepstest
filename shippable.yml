@@ -1,5 +1,11 @@
 resources:
-  - name: gitvijay
+  - name: artifactory_govijay
+    type: GitRepo
+    configuration:
+      path: vijayreddy1991/artifactory-go-example
+      branches:
+        include: master
+      gitProvider: github
   
 
 pipelines:
@@ -14,7 +20,9 @@ pipelines:
               custom:
                 name: vijaydocker1991/u18node
                 tag: gotesting
-                options: " "          
+                options: " "   
+          inputResources:
+            - name: artifactory_govijay
         execution:
           onExecute:
             - printenv
