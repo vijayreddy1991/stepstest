@@ -14,6 +14,7 @@ pipelines:
         execution:
           onExecute:
             - printenv
+            
       - name: BashVijay1
         type: Bash
         configuration:   
@@ -26,4 +27,5 @@ pipelines:
                 options: " "          
         execution:
           onExecute:
-            - printenv            
+            - printenv    
+            - ls
