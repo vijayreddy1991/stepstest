@@ -9,7 +9,7 @@ resources:
   
 
 pipelines:
-  - name: testBashVijay
+  - name: localpipeline
     steps:
       - name: BashVijaytest
         type: Bash
