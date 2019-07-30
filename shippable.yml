@@ -1,5 +1,3 @@
-
-  
 resources:
   - name: gogit
     type: GitRepo
@@ -7,7 +5,7 @@ resources:
       path: vijayreddy1991/artifactory-go-example
       branches:
         include: master
-      gitProvider: my_integration #github
+      gitProvider: my_integration1 #github
       
 pipelines:
   - name: localpipeline
