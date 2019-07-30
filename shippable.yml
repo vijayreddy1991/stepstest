@@ -1,5 +1,5 @@
 pipelines:
-  - name: vijayBash
+  - name: testBashVijay
     steps:
       - name: BashVijay
         type: Bash
