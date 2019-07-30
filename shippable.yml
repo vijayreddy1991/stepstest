@@ -15,17 +15,17 @@ pipelines:
           onExecute:
             - printenv
             
-      - name: BashVijay1
-        type: Bash
-        configuration:   
-          runtime:       
-            type: image
-            image:
-              custom:
-                name: vijaydocker1991/u18node
-                tag: gotesting
-                options: " "          
-        execution:
-          onExecute:
-            - printenv    
-            - ls
+#       - name: BashVijay1
+#         type: Bash
+#         configuration:   
+#           runtime:  
+#             type: image
+#             image:
+#               custom:
+#                 name: vijaydocker1991/u18node
+#                 tag: gotesting
+#                 options: " "          
+#         execution:
+#           onExecute:
+#             - printenv    
+#             - ls
