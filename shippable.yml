@@ -11,7 +11,7 @@ resources:
 pipelines:
   - name: testBashVijay
     steps:
-      - name: BashVijay
+      - name: BashVijaytest
         type: Bash
         configuration:   
           runtime:       
