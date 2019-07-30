@@ -5,7 +5,7 @@ resources:
       path: vijayreddy1991/artifactory-go-example
       branches:
         include: master
-      gitProvider: my_integration1 #github
+      gitProvider: my_integration #github
       
 pipelines:
   - name: localpipeline
