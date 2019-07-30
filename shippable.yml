@@ -1,3 +1,7 @@
+resources:
+  - name: gitvijay
+  
+
 pipelines:
   - name: testBashVijay
     steps:
