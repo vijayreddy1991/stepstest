@@ -5,7 +5,7 @@ resources:
       path: vijayreddy1991/artifactory-go-example
       branches:
         include: master
-      gitProvider: github
+      gitProvider: vijay_github
       
   - name: go_build_info
     type: BuildInfo
