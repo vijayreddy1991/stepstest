@@ -61,7 +61,7 @@ pipelines:
       - name: build_go
         type: GoBuild
         configuration:
-          nodePool: ubuntu16
+#           nodePool: ubuntu16
           sourceLocation: .
           repository: test-go-local
           outputLocation: tmp
@@ -82,7 +82,7 @@ pipelines:
       - name: publish_go_binary
         type: GoPublishBinary
         configuration:
-          nodePool: ubuntu16        
+#           nodePool: ubuntu16        
           inputSteps:
             - name: build_go
           targetRepository: test-go-local
@@ -92,7 +92,7 @@ pipelines:
       - name: publish_build
         type: PublishBuildInfo
         configuration:
-          nodePool: ubuntu16        
+#           nodePool: ubuntu16        
           inputSteps:
             - name: publish_go_binary
           outputResources:
@@ -101,7 +101,7 @@ pipelines:
       - name: promote_build_go
         type: PromoteBuild
         configuration:
-          nodePool: ubuntu16        
+#           nodePool: ubuntu16        
           targetRepository: test-go-local
           integrations:
             - name: vijay_artifactory
@@ -113,7 +113,7 @@ pipelines:
       - name: bundle_go_publish
         type: CreateReleaseBundle
         configuration:
-          nodePool: ubuntu16        
+#           nodePool: ubuntu16        
           dryRun: false
           description: "This is to test GoBuild -> PushArtifactoryPackage -> PublishBuildInfo -> Promote -> CreateRelease -> Sign -> Distribute pipeline chain"
           releaseBundleName: test-go-local
