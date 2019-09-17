@@ -68,6 +68,7 @@ pipelines:
           outputFile: hello
           inputResources:
             - name: artifactory_go
+              trigger: false
           integrations:
             - name: vijay_artifactory
         execution:
