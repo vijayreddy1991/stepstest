@@ -69,8 +69,8 @@ pipelines:
           inputResources:
             - name: artifactory_go
               trigger: false
-          integrations:
-            - name: vijay_artifactory
+#           integrations:
+#             - name: vijay_artifactory
         execution:
           onStart:
             - wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
