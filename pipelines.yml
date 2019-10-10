@@ -2,7 +2,7 @@ resources:
   - name: artifactory_go
     type: GitRepo
     configuration:
-      path: vijayreddy1991/artifactory-go-example
+      path: vijayreddy1991/stepstest
       branches:
         include: master
       gitProvider: vijay_github
@@ -59,7 +59,7 @@ pipelines:
             options: " "   
     steps:
       - name: build_go
-        type: GoBuild
+        type: Bash
         configuration:
 #           nodePool: ubuntu16
           sourceLocation: .
