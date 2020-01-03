@@ -35,7 +35,10 @@ pipelines:
               auto:
                 language: nodejs
                 versions:
-                  - "10.16.3"       
+                  - "10.16.3"                     
+          inputSteps:
+            - name: go_test      
+            
         execution:
           onExecute:
             - printenv    
