@@ -24,19 +24,19 @@ pipelines:
             - name: go_test
         execution:
           onExecute:
-            - printenv
+            - node --version
             
-#       - name: BashVijay1
-#         type: Bash
-#         configuration:   
-#           runtime:  
-#             type: image
-#             image:
-#               custom:
-#                 name: vijaydocker1991/u18node
-#                 tag: gotesting
-#                 options: " "          
-#         execution:
-#           onExecute:
-#             - printenv    
-#             - ls
+      - name: BashVijay1
+        type: Bash
+        configuration:   
+          runtime:  
+            type: image
+            image:
+              auto:
+                language: nodejs
+                versions:
+                  - "10.16.3"       
+        execution:
+          onExecute:
+            - printenv    
+            - ls
