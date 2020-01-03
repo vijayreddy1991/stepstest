@@ -49,7 +49,7 @@ pipelines:
           runtime:  
             type: host                 
           inputSteps:
-            - name: Bash1   
+            - name: Bash2   
             
         execution:
           onExecute:
