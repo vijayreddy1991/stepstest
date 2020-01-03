@@ -26,22 +26,22 @@ pipelines:
           onExecute:
             - node --version
             
-      - name: Bash2
-        type: Bash
-        configuration:   
-          runtime:  
-            type: image
-            image:
-              auto:
-                language: nodejs
-                versions:
-                  - 10.16.3                     
-          inputSteps:
-            - name: Bash1      
+#       - name: Bash2
+#         type: Bash
+#         configuration:   
+#           runtime:  
+#             type: image
+#             image:
+#               auto:
+#                 language: nodejs
+#                 versions:
+#                   - 10.16.3                     
+#           inputSteps:
+#             - name: Bash1      
             
-        execution:
-          onExecute:
-            - echo "success"
+#         execution:
+#           onExecute:
+#             - echo "success"
             
       - name: Bash3
         type: Bash
@@ -54,7 +54,7 @@ pipelines:
 #                 versions:
 #                   - "10.16.3"                     
           inputSteps:
-            - name: Bash2    
+            - name: Bash1   
             
         execution:
           onExecute:
