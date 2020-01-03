@@ -48,7 +48,7 @@ pipelines:
         configuration:   
           runtime:  
             type: host
-            image:
+#             image:
 #               auto:
 #                 language: nodejs
 #                 versions:
