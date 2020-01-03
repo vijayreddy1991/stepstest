@@ -53,4 +53,6 @@ pipelines:
             
         execution:
           onExecute:
-            - echo "success"            
+            - echo "success"  
+            - pushd $res_go_test_resourcePath
+            - sudo docker build -t shippabledocker/jfreq:latest .
