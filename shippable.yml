@@ -35,11 +35,27 @@ pipelines:
               auto:
                 language: nodejs
                 versions:
-                  - "10.16.3"                     
+                  - 10.16.3                     
           inputSteps:
             - name: Bash1      
             
         execution:
           onExecute:
-            - printenv    
-            - ls
+            - echo "success"
+            
+      - name: Bash3
+        type: Bash
+        configuration:   
+          runtime:  
+            type: host
+            image:
+#               auto:
+#                 language: nodejs
+#                 versions:
+#                   - "10.16.3"                     
+          inputSteps:
+            - name: Bash2    
+            
+        execution:
+          onExecute:
+            - echo "success"            
