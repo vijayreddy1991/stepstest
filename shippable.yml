@@ -10,7 +10,7 @@ resources:
 pipelines:
   - name: localpipeline
     steps:
-      - name: BashVijaytest
+      - name: Bash1
         type: Bash
         configuration:   
           runtime:       
@@ -26,7 +26,7 @@ pipelines:
           onExecute:
             - node --version
             
-      - name: BashVijay1
+      - name: Bash2
         type: Bash
         configuration:   
           runtime:  
@@ -37,7 +37,7 @@ pipelines:
                 versions:
                   - "10.16.3"                     
           inputSteps:
-            - name: go_test      
+            - name: Bash1      
             
         execution:
           onExecute:
