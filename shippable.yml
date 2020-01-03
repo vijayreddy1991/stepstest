@@ -46,8 +46,8 @@ pipelines:
       - name: Bash3
         type: Bash
         configuration:   
-          runtime:  
-            type: host  
+          #runtime:  
+          #  type: host  
           inputResources:
             - name: go_test              
           inputSteps:
