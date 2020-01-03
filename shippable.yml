@@ -47,7 +47,9 @@ pipelines:
         type: Bash
         configuration:   
           runtime:  
-            type: host                 
+            type: host  
+          inputResources:
+            - name: go_test              
           inputSteps:
             - name: Bash2   
             
