@@ -14,7 +14,7 @@ resources:
          pullRequestClose: true
          releaseCreate: true
          tagCreate: true
-      shallowDepth: 3 # optional       
+      shallowDepth: 10 # optional       
       
 pipelines:
   - name: localpipeline
