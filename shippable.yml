@@ -2,7 +2,7 @@ resources:
   - name: go_test
     type: GitRepo
     configuration:
-      path: vijayreddy1991/stepstest
+      path: vijayreddy1991/dummy
       branches:
         include: master
       gitProvider: my_integration #github
