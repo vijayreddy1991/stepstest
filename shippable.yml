@@ -25,6 +25,7 @@ pipelines:
         execution:
           onExecute:
             - node --version
+            - echo "testing auto"
             
       - name: Bash2
         type: Bash
