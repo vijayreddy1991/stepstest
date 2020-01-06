@@ -36,36 +36,36 @@ pipelines:
             - node --version
             - echo "testing auto"
             
-      - name: Bash2
-        type: Bash
-        configuration:   
-          runtime:  
-            type: image
-            image:
-              auto:
-                language: node
-                versions:
-                  - 10.16.3                     
-          inputSteps:
-            - name: Bash1      
+#       - name: Bash2
+#         type: Bash
+#         configuration:   
+#           runtime:  
+#             type: image
+#             image:
+#               auto:
+#                 language: node
+#                 versions:
+#                   - 10.16.3                     
+#           inputSteps:
+#             - name: Bash1      
             
-        execution:
-          onExecute:
-            - echo "success"
+#         execution:
+#           onExecute:
+#             - echo "success"
             
-      - name: Bash3
-        type: Bash
-        configuration:   
-          #runtime:  
-          #  type: host  
-          inputResources:
-            - name: go_test              
-          inputSteps:
-            - name: Bash2   
+#       - name: Bash3
+#         type: Bash
+#         configuration:   
+#           #runtime:  
+#           #  type: host  
+#           inputResources:
+#             - name: go_test              
+#           inputSteps:
+#             - name: Bash2   
             
-        execution:
-          onExecute:
-            - echo "success"  
-            - printenv
-            - cd $res_go_test_resourcePath
-            - sudo docker build -t shippabledocker/jfreq:latest .
+#         execution:
+#           onExecute:
+#             - echo "success"  
+#             - printenv
+#             - cd $res_go_test_resourcePath
+#             - sudo docker build -t shippabledocker/jfreq:latest .
