@@ -2,19 +2,19 @@ resources:
   - name: go_test
     type: GitRepo
     configuration:
-      path: vijayreddy1991/dummy
+      path: vijayreddy1991/stepstest
       branches:
         include: master
-      gitProvider: my_integration #github
-      tags:  # optional
-        include: master
-      buildOn:  # optional
-         commit: true
-         pullRequestCreate: true
-         pullRequestClose: true
-         releaseCreate: true
-         tagCreate: true
-      shallowDepth: 10 # optional       
+      gitProvider: vijay #github
+#       tags:  # optional
+#         include: master
+#       buildOn:  # optional
+#          commit: true
+#          pullRequestCreate: true
+#          pullRequestClose: true
+#          releaseCreate: true
+#          tagCreate: true
+#       shallowDepth: 10 # optional       
       
 pipelines:
   - name: localpipeline
